@@ -3724,10 +3724,10 @@ L0053:	adc     _piece_pos_offset_plus
 	ldx     #>(_title_pal)
 	jsr     _pal_spr
 ;
-; vram_adr(NTADR_A(7, 18));
+; vram_adr(NTADR_A(7, 12));
 ;
-	ldx     #$22
-	lda     #$47
+	ldx     #$21
+	lda     #$87
 	jsr     _vram_adr
 ;
 ; vram_write(player_vs_player_text, 17);
@@ -3739,10 +3739,10 @@ L0053:	adc     _piece_pos_offset_plus
 	lda     #$11
 	jsr     _vram_write
 ;
-; vram_adr(NTADR_A(6, 20));
+; vram_adr(NTADR_A(6, 14));
 ;
-	ldx     #$22
-	lda     #$86
+	ldx     #$21
+	lda     #$C6
 	jsr     _vram_adr
 ;
 ; vram_write(player_vs_computer_text, 19);
@@ -3754,9 +3754,9 @@ L0053:	adc     _piece_pos_offset_plus
 	lda     #$13
 	jsr     _vram_write
 ;
-; selected_option = 143;
+; selected_option = 95;
 ;
-	lda     #$8F
+	lda     #$5F
 	sta     _selected_option
 ;
 ; ppu_on_all();
@@ -3829,23 +3829,23 @@ L0002:	jsr     _ppu_wait_nmi
 	and     #$20
 	beq     L000C
 ;
-; if (selected_option == 143) {
+; if (selected_option == 95) {
 ;
 	lda     _selected_option
-	cmp     #$8F
+	cmp     #$5F
 	bne     L000B
 ;
-; selected_option = 159;
+; selected_option = 111;
 ;
-	lda     #$9F
+	lda     #$6F
 ;
 ; } else {
 ;
 	jmp     L000A
 ;
-; selected_option = 143;
+; selected_option = 95;
 ;
-L000B:	lda     #$8F
+L000B:	lda     #$5F
 L000A:	sta     _selected_option
 ;
 ; if (pad_1 & PAD_START) {
@@ -3858,10 +3858,10 @@ L000C:	lda     _pad_1
 ;
 	jsr     _seed_rng
 ;
-; if (selected_option == 159) {
+; if (selected_option == 111) {
 ;
 	lda     _selected_option
-	cmp     #$9F
+	cmp     #$6F
 	bne     L0009
 ;
 ; ++gamemode;

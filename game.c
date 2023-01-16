@@ -123,12 +123,6 @@ const unsigned char piece_animation_values[] = {48, 32, 16, 0, 16, 32, 48};
 const unsigned char row_of_slots_upper[] = {0x17, 0x18, 0x17, 0x18, 0x17, 0x18, 0x17, 0x18, 0x17, 0x18, 0x17, 0x18, 0x17, 0x18};
 const unsigned char row_of_slots_lower[] = {0x19, 0x1a, 0x19, 0x1a, 0x19, 0x1a, 0x19, 0x1a, 0x19, 0x1a, 0x19, 0x1a, 0x19, 0x1a};
 
-const unsigned char game_title_1[] = {0x33, 0x37, 0x32,   0x33, 0x37, 0x32,   };
-const unsigned char game_title_2[] = {0x34, 0x00, 0x00,   0x34, 0x00, 0x36,   };
-const unsigned char game_title_3[] = {0x34, 0x00, 0x00,   0x34, 0x00, 0x36,   };
-const unsigned char game_title_4[] = {0x34, 0x00, 0x00,   0x34, 0x00, 0x36,   };
-const unsigned char game_title_5[] = {0x31, 0x35, 0x30,   0x31, 0x35, 0x30,   };
-
 unsigned char ROL(unsigned char n, unsigned char e) { // thanks geeksforgeeks
 	return (n >> e)|(n << (8 - e));
 }
@@ -506,12 +500,12 @@ void main(void) {
 	pal_bg(title_pal);
 	pal_spr(title_pal);
 
-	vram_adr(NTADR_A(7, 18));
+	vram_adr(NTADR_A(7, 12));
 	vram_write(player_vs_player_text, 17);
-	vram_adr(NTADR_A(6, 20));
+	vram_adr(NTADR_A(6, 14));
 	vram_write(player_vs_computer_text, 19);
 
-	selected_option = 143;
+	selected_option = 95;
 	ppu_on_all();
 
 	while (1) {
@@ -528,16 +522,16 @@ void main(void) {
 		pad_1 = get_pad_new(0);
 
 		if (pad_1 & PAD_SELECT) {
-			if (selected_option == 143) {
-				selected_option = 159;
+			if (selected_option == 95) {
+				selected_option = 111;
 			} else {
-				selected_option = 143;
+				selected_option = 95;
 			}
 		}
 
 		if (pad_1 & PAD_START) {
 			seed_rng();
-			if (selected_option == 159) {
+			if (selected_option == 111) {
 				++gamemode;
 			}
 			game();
